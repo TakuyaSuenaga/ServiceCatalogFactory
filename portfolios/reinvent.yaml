@@ -1,0 +1,7 @@
+Schema: factory-2019-04-01
+Portfolios:
+  - DisplayName: "Cloud Engineering"
+    Description: "Portfolio containing products for cloud engineering"
+    ProviderName: "Cloud Engineering"
+    Associations:
+      - "arn:aws:iam::${AWS::AccountId}:role/TeamRole"

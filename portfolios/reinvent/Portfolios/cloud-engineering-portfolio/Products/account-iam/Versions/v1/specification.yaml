@@ -1,0 +1,10 @@
+Schema: factory-2019-04-01
+Versions:
+  - Name: "v1"
+    Description: "The iam roles needed for you to do your jobs"
+    Active: true
+    Source:
+      Provider: "CodeCommit"
+      Configuration:
+        RepositoryName: "account-iam"
+        BranchName: "v1"
