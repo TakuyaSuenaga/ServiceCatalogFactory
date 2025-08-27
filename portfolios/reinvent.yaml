@@ -1,6 +1,6 @@
 Schema: factory-2019-04-01
 Portfolios:
-  - DisplayName: "Cloud Engineering"
+  - DisplayName: "CloudEngineering"
     Description: "Portfolio containing products for cloud engineering"
     ProviderName: "Cloud Engineering"
     Associations:
