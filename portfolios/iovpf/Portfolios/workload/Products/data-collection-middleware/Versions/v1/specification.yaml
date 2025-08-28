@@ -1,5 +1,5 @@
 Name: "v1"
-Description: "Initial version of data collection middleware for EC2 instance creation from AMI templates. Baseline functionality with core features."
+Description: "Initial version of data collection middleware for EC2 instance creation from AMI templates"
 Active: true
 Source:
   Provider: "S3"
