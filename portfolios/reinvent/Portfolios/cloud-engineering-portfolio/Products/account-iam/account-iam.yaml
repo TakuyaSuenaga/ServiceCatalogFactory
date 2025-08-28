@@ -7,3 +7,5 @@ SupportUrl: "https://wiki.customer.com/central-it-team/self-service/account-iam"
 Tags:
   - Key: "product-type"
     Value: "iam"
+Versions:
+  - Name: "v1"
