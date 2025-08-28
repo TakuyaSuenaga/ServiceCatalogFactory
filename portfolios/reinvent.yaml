@@ -5,9 +5,3 @@ Portfolios:
     ProviderName: "Cloud Engineering"
     Associations:
       - "arn:aws:iam::${AWS::AccountId}:role/TeamRole"
-    Products:
-      - Name: "account-iam"
-        Source:
-          Provider: "File"
-          Configuration:
-            Path: "portfolios/reinvent/Portfolios/cloud-engineering-portfolio/Products/account-iam/account-iam.yaml"
