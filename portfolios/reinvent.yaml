@@ -1,9 +1,13 @@
 Schema: factory-2019-04-01
 Portfolios:
-  - DisplayName: "cloud-engineering-portfolio"
+  - DisplayName: "CloudEngineering"
     Description: "Portfolio containing products for cloud engineering"
     ProviderName: "Cloud Engineering"
     Associations:
       - "arn:aws:iam::${AWS::AccountId}:role/TeamRole"
     Products:
       - Name: "account-iam"
+        Source:
+          Provider: "File"
+          Configuration:
+            Path: "portfolios/reinvent/Portfolios/cloud-engineering-portfolio/Products/account-iam/account-iam.yaml"

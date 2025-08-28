@@ -1,3 +1,4 @@
+Name: "account-iam"
 Owner: "central-it@customer.com"
 Description: "The iam roles needed for you to do your jobs"
 Distributor: "central-it-team"
@@ -7,3 +8,9 @@ SupportUrl: "https://wiki.customer.com/central-it-team/self-service/account-iam"
 Tags:
   - Key: "product-type"
     Value: "iam"
+Versions:
+  - Name: "v1"
+    Source:
+      Provider: "File"
+      Configuration:
+        Path: "portfolios/reinvent/Portfolios/cloud-engineering-portfolio/Products/account-iam/Versions/v1/specification.yaml"
