@@ -1,4 +1,4 @@
-# AWS ServiceCatalog Factory Repository　
+# AWS ServiceCatalog Factory Repository　 
 
 ## 概要
 
