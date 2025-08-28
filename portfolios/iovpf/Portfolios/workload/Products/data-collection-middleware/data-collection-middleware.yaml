@@ -10,6 +10,3 @@ Tags:
     Value: "DataCollection"
   - Key: "Team"
     Value: "iovpf"
-Versions:
-  - Name: "v1"
-  - Name: "v2"

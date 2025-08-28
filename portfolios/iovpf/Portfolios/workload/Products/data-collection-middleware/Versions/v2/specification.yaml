@@ -5,5 +5,5 @@ Source:
   Provider: "CodeStarSourceConnection"
   Configuration:
     BranchName: "iovpf/Portfolios/workload/Products/data-collection-middleware/Versions/v2"
-    ConnectionArn: "arn:aws:codestar-connections:eu-west-1:0123456789010:connection/eb6703af-6407-0522dc6a6"
+    ConnectionArn: "arn:aws:codeconnections:ap-northeast-1:897729135795:connection/67af3744-985a-44cf-b248-9b3f509ad7f3"
     FullRepositoryId: "iovpf/ServiceCatalogFactoryProductTemplate"
