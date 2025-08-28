@@ -1,4 +1,4 @@
-Schema: factory-2019-04-02
+Schema: factory-2019-04-01
 Portfolios:
   - DisplayName: "workload"
     Description: "Portfolio for workload management products including EC2 instance creation from AMI templates"

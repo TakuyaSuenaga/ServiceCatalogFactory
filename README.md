@@ -77,7 +77,7 @@ portfolios/{portfolio-file-name}.yaml
 
 #### portfolios/iovpf.yaml
 ```yaml
-Schema: factory-2019-04-02
+Schema: factory-2019-04-01
 Portfolios:
   - DisplayName: "workload"
     Description: "Portfolio for workload management products including EC2 instance creation from AMI templates"
@@ -291,6 +291,6 @@ Source:
 - AWS ServiceCatalog Factory
 - CodePipeline設定
 - 適切なIAM権限（上記TeamRoleとServiceCatalogEndUserAccessポリシー）
-- factory-2019-04-02スキーマ準拠
+- factory-2019-04-01スキーマ準拠
 - GitHubリポジトリ（プロダクトのCloudFormationテンプレート用）
 - CodeStarSourceConnection設定
