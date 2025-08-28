@@ -1,8 +1,0 @@
-Name: "v2"
-Description: "Updated iam roles needed for you to do your jobs"
-Active: true
-Source:
-  Provider: "CodeCommit"
-  Configuration:
-    RepositoryName: "account-iam"
-    BranchName: "v2"

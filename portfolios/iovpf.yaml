@@ -1,0 +1,7 @@
+Schema: factory-2019-04-02
+Portfolios:
+  - DisplayName: "workload"
+    Description: "Portfolio for workload management products including EC2 instance creation from AMI templates"
+    ProviderName: "IoVPF Operations Team"
+    Associations:
+      - "arn:aws:iam::${AWS::AccountId}:role/TeamRole"

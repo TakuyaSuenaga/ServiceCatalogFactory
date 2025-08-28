@@ -1,0 +1,9 @@
+Name: "v1"
+Description: "Initial version of data collection middleware for EC2 instance creation from AMI templates"
+Active: true
+Source:
+  Provider: "CodeStarSourceConnection"
+  Configuration:
+    BranchName: "iovpf/Portfolios/workload/Products/data-collection-middleware/Versions/v1"
+    ConnectionArn: "arn:aws:codestar-connections:eu-west-1:0123456789010:connection/eb6703af-6407-0522dc6a6"
+    FullRepositoryId: "iovpf/ServiceCatalogFactoryProductTemplate"

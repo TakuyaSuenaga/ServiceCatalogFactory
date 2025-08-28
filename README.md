@@ -2,23 +2,25 @@
 
 ## 概要
 
-このリポジトリは、AWS ServiceCatalog Factory用のポートフォリオとプロダクト定義を管理するためのものです。CodePipelineによって監視され、AWS ServiceCatalogへの自動デプロイメントをサポートします。
+このリポジトリは、AWS ServiceCatalog Factory用のポートフォリオとプロダクト定義を管理するためのものです。CodePipelineによって監視され、AWS ServiceCatalogへの自動デプロイメントをサポートします。AMIからEC2インスタンスを作成するデータ収集ミドルウェアプロダクトを管理します。
 
 ## リポジトリ構造
 
 ```
 service-catalog-factory-repo/
 ├── portfolios/
-│   ├── reinvent/
+│   ├── iovpf/
 │   │   └── Portfolios/
-│   │       └── cloud-engineering-portfolio/
+│   │       └── workload/
 │   │           └── Products/
-│   │               └── account-iam/
+│   │               └── data-collection-middleware/
 │   │                   ├── Versions/
-│   │                   │   └── v1/
+│   │                   │   ├── v1/
+│   │                   │   │   └── specification.yaml
+│   │                   │   └── v2/
 │   │                   │       └── specification.yaml
-│   │                   └── account-iam.yaml
-│   └── reinvent.yaml
+│   │                   └── data-collection-middleware.yaml
+│   └── iovpf.yaml
 └── README.md
 ```
 
@@ -26,6 +28,8 @@ service-catalog-factory-repo/
 
 - **ポートフォリオ管理**: 構造化されたフォルダ階層でServiceCatalogポートフォリオを整理
 - **プロダクト分離**: プロダクト定義をポートフォリオ定義から分離し、独立したバージョン管理を実現
+- **AMI-EC2統合**: AMIテンプレートからEC2インスタンスを作成するワークロード管理
+- **データ収集ミドルウェア**: データ処理ワークロード用のEC2インスタンス自動作成
 - **スケーラビリティ**: 新しいポートフォリオやプロダクトの追加が容易な構造
 - **AWS標準準拠**: AWS ServiceCatalog Factoryのベストプラクティスに従った設計
 
@@ -49,19 +53,19 @@ portfolios/{portfolio-file-name}.yaml
 ### 命名規則の詳細
 
 #### 1. ポートフォリオファイル
-- **ファイル名**: `portfolios/reinvent.yaml`
-- **対応ディレクトリ**: `portfolios/reinvent/`
+- **ファイル名**: `portfolios/iovpf.yaml`
+- **対応ディレクトリ**: `portfolios/iovpf/`
 - **重要**: ファイル名（拡張子なし）とディレクトリ名は一致する必要があります
 
 #### 2. ポートフォリオDisplayName
-- **reinvent.yaml内**: `DisplayName: "cloud-engineering-portfolio"`
-- **対応ディレクトリ**: `portfolios/reinvent/Portfolios/cloud-engineering-portfolio/`
+- **iovpf.yaml内**: `DisplayName: "workload"`
+- **対応ディレクトリ**: `portfolios/iovpf/Portfolios/workload/`
 - **重要**: DisplayNameとディレクトリ名は完全に一致する必要があります
 
 #### 3. プロダクト名
-- **プロダクト名**: `account-iam`
-- **ディレクトリ**: `Products/account-iam/`
-- **ファイル名**: `account-iam.yaml`
+- **プロダクト名**: `data-collection-middleware`
+- **ディレクトリ**: `Products/data-collection-middleware/`
+- **ファイル名**: `data-collection-middleware.yaml`
 - **重要**: プロダクト名、ディレクトリ名、ファイル名（拡張子なし）は一致する必要があります
 
 #### 4. バージョン名
@@ -71,49 +75,49 @@ portfolios/{portfolio-file-name}.yaml
 
 ### ファイルの役割
 
-#### portfolios/reinvent.yaml
+#### portfolios/iovpf.yaml
 ```yaml
-Schema: factory-2019-04-01
+Schema: factory-2019-04-02
 Portfolios:
-  - DisplayName: "cloud-engineering-portfolio"
-    Description: "Portfolio containing products for cloud engineering"
-    ProviderName: "Cloud Engineering"
+  - DisplayName: "workload"
+    Description: "Portfolio for workload management products including EC2 instance creation from AMI templates"
+    ProviderName: "IoVPF Operations Team"
     Associations:
       - "arn:aws:iam::${AWS::AccountId}:role/TeamRole"
 ```
 - ポートフォリオの基本情報のみを定義
 - プロダクトの詳細は階層構造から自動読み込み
 
-#### Products/account-iam/account-iam.yaml
+#### Products/data-collection-middleware/data-collection-middleware.yaml
 ```yaml
-Owner: "central-it@customer.com"
-Description: "The iam roles needed for you to do your jobs"
-Distributor: "central-it-team"
-SupportDescription: "Contact us on Chime for help #central-it-team"
-SupportEmail: "central-it-team@customer.com"
-SupportUrl: "https://wiki.customer.com/central-it-team/self-service/account-iam"
+Name: "data-collection-middleware"
+Description: "Data collection middleware service that creates EC2 instances from pre-configured AMI templates for data processing workloads"
+Owner: "iovpf@company.com"
+Distributor: "IoVPF Operations Team"
+SupportDescription: "Contact IoVPF Operations team for support"
+SupportEmail: "iovpf@company.com"
+SupportUrl: "https://wiki.company.com/iovpf-operations"
 Tags:
-  - Key: "product-type"
-    Value: "iam"
-Versions:
-  - Name: "v1"
+  - Key: "ServiceType"
+    Value: "DataCollection"
 ```
 - プロダクトのメタデータを定義
-- バージョンの参照のみ（詳細は別ファイル）
+- AMIからEC2インスタンス作成用のデータ収集ミドルウェア
 
 #### Versions/v1/specification.yaml
 ```yaml
 Name: "v1"
-Description: "The iam roles needed for you to do your jobs"
+Description: "Initial version of data collection middleware for EC2 instance creation from AMI templates"
 Active: true
 Source:
-  Provider: "CodeCommit"
+  Provider: "CodeStarSourceConnection"
   Configuration:
-    RepositoryName: "account-iam"
-    BranchName: "v1"
+    BranchName: "iovpf/Portfolios/workload/Products/data-collection-middleware/Versions/v1"
+    ConnectionArn: "arn:aws:codestar-connections:eu-west-1:0123456789010:connection/eb6703af-6407-0522dc6a6"
+    FullRepositoryId: "iovpf/ServiceCatalogFactoryProductTemplate"
 ```
 - バージョン固有の設定
-- ソースリポジトリの参照
+- GitHubリポジトリからのテンプレート取得設定
 
 ## 使用方法
 
@@ -152,8 +156,9 @@ Source:
 
 このリポジトリには以下の初期設定が含まれています：
 
-- **reinventポートフォリオ**: Cloud Engineeringポートフォリオを含む
-- **account-iamプロダクト**: IAMロール管理用のプロダクト（バージョンv1）
+- **iovpfポートフォリオ**: ワークロード管理ポートフォリオを含む
+- **data-collection-middlewareプロダクト**: AMIからEC2インスタンス作成用のデータ収集ミドルウェア（バージョンv1, v2）
+- **GitHubテンプレート統合**: CodeStarSourceConnectionを使用したテンプレート取得
 
 ## CodePipelineとの連携
 
@@ -182,10 +187,110 @@ Source:
 1. `specification.yaml`に`Name`フィールドが含まれているか確認
 2. `{product-name}.yaml`のVersionsセクションにバージョンが定義されているか確認
 
+## IAM権限設定
+
+### TeamRoleロール
+
+ポートフォリオにアクセスするためのIAMロールです。
+
+#### 信頼ポリシー（Trust Policy）
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::897729135795:root"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+```
+
+#### 権限ポリシー（Permissions Policy）
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "servicecatalog:ListProvisioningArtifacts",
+                "servicecatalog:DescribeProduct",
+                "servicecatalog:DescribeProductView",
+                "servicecatalog:DescribeProvisioningArtifact",
+                "servicecatalog:DescribeRecord",
+                "servicecatalog:ListRecordHistory",
+                "servicecatalog:ProvisionProduct",
+                "servicecatalog:TerminateProvisionedProduct",
+                "servicecatalog:UpdateProvisionedProduct",
+                "servicecatalog:SearchProducts",
+                "servicecatalog:SearchProvisionedProducts",
+                "servicecatalog:ScanProvisionedProducts"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+### ServiceCatalogEndUserAccessポリシー
+
+エンドユーザーがServiceCatalogプロダクトにアクセスするためのポリシーです：
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "servicecatalog:ListProvisioningArtifacts",
+                "servicecatalog:DescribeProduct",
+                "servicecatalog:DescribeProductView",
+                "servicecatalog:DescribeProvisioningArtifact",
+                "servicecatalog:DescribeRecord",
+                "servicecatalog:ListRecordHistory",
+                "servicecatalog:ProvisionProduct",
+                "servicecatalog:TerminateProvisionedProduct",
+                "servicecatalog:UpdateProvisionedProduct",
+                "servicecatalog:SearchProducts",
+                "servicecatalog:SearchProvisionedProducts",
+                "servicecatalog:ScanProvisionedProducts",
+                "servicecatalog:ListPortfolios",
+                "servicecatalog:ListAcceptedPortfolioShares",
+                "servicecatalog:DescribePortfolio",
+                "servicecatalog:ListPortfolioAccess",
+                "servicecatalog:ListLaunchPaths"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeImages",
+                "ec2:DescribeInstances",
+                "ec2:DescribeInstanceTypes",
+                "ec2:DescribeKeyPairs",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeVpcs",
+                "iam:ListRoles",
+                "iam:PassRole"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
 ## 要件
 
 - AWS ServiceCatalog Factory
 - CodePipeline設定
-- 適切なIAM権限（TeamRoleなど）
-- factory-2019-04-01スキーマ準拠
-- 外部CodeCommitリポジトリ（プロダクトのCloudFormationテンプレート用）
+- 適切なIAM権限（上記TeamRoleとServiceCatalogEndUserAccessポリシー）
+- factory-2019-04-02スキーマ準拠
+- GitHubリポジトリ（プロダクトのCloudFormationテンプレート用）
+- CodeStarSourceConnection設定
