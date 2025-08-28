@@ -2,7 +2,7 @@ Name: "v1"
 Description: "Initial version of data collection middleware for EC2 instance creation from AMI templates"
 Active: true
 Source:
-  Provider: "CodeCommit"
+  Provider: "S3"
   Configuration:
-    RepositoryName: "ServiceCatalogFactoryProductTemplate"
-    BranchName: "iovpf/Portfolios/workload/Products/data-collection-middleware/Versions/v1"
+    BucketName: "service-catalog-factory-template-897729135795"
+    S3ObjectKey: "products/data-collection-middleware/v1/product.zip"

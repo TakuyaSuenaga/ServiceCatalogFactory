@@ -2,7 +2,7 @@ Name: "v2"
 Description: "Enhanced version of data collection middleware with improved AMI template support and auto-scaling capabilities"
 Active: true
 Source:
-  Provider: "CodeCommit"
+  Provider: "S3"
   Configuration:
-    RepositoryName: "ServiceCatalogFactoryProductTemplate"
-    BranchName: "iovpf/Portfolios/workload/Products/data-collection-middleware/Versions/v2"
+    BucketName: "service-catalog-factory-template-897729135795"
+    S3ObjectKey: "products/data-collection-middleware/v2/product.zip"
