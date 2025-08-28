@@ -5,5 +5,3 @@ Portfolios:
     ProviderName: "Cloud Engineering"
     Associations:
       - "arn:aws:iam::${AWS::AccountId}:role/TeamRole"
-    Components:
-      - Name: "account-iam"
