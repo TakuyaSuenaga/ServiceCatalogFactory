@@ -2,8 +2,7 @@ Name: "v2"
 Description: "Enhanced version of data collection middleware with improved AMI template support and auto-scaling capabilities"
 Active: true
 Source:
-  Provider: "CodeStarSourceConnection"
+  Provider: "CodeCommit"
   Configuration:
+    RepositoryName: "ServiceCatalogFactoryProductTemplate"
     BranchName: "iovpf/Portfolios/workload/Products/data-collection-middleware/Versions/v2"
-    ConnectionArn: "arn:aws:codeconnections:ap-northeast-1:897729135795:connection/67af3744-985a-44cf-b248-9b3f509ad7f3"
-    FullRepositoryId: "iovpf/ServiceCatalogFactoryProductTemplate"

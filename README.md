@@ -110,14 +110,13 @@ Name: "v1"
 Description: "Initial version of data collection middleware for EC2 instance creation from AMI templates"
 Active: true
 Source:
-  Provider: "CodeStarSourceConnection"
+  Provider: "CodeCommit"
   Configuration:
+    RepositoryName: "ServiceCatalogFactoryProductTemplate"
     BranchName: "iovpf/Portfolios/workload/Products/data-collection-middleware/Versions/v1"
-    ConnectionArn: "arn:aws:codestar-connections:eu-west-1:0123456789010:connection/eb6703af-6407-0522dc6a6"
-    FullRepositoryId: "iovpf/ServiceCatalogFactoryProductTemplate"
 ```
 - バージョン固有の設定
-- GitHubリポジトリからのテンプレート取得設定
+- CodeCommitリポジトリからのテンプレート取得設定
 
 ## 使用方法
 
@@ -158,7 +157,7 @@ Source:
 
 - **iovpfポートフォリオ**: ワークロード管理ポートフォリオを含む
 - **data-collection-middlewareプロダクト**: AMIからEC2インスタンス作成用のデータ収集ミドルウェア（バージョンv1, v2）
-- **GitHubテンプレート統合**: CodeStarSourceConnectionを使用したテンプレート取得
+- **CodeCommitテンプレート統合**: CodeCommitリポジトリからのテンプレート取得
 
 ## CodePipelineとの連携
 
@@ -292,5 +291,4 @@ Source:
 - CodePipeline設定
 - 適切なIAM権限（上記TeamRoleとServiceCatalogEndUserAccessポリシー）
 - factory-2019-04-01スキーマ準拠
-- GitHubリポジトリ（プロダクトのCloudFormationテンプレート用）
-- CodeStarSourceConnection設定
+- CodeCommitリポジトリ（プロダクトのCloudFormationテンプレート用）
