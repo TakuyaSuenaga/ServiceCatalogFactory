@@ -9,3 +9,4 @@ Tags:
     Value: "iam"
 Versions:
   - Name: "v1"
+  - Name: "v2"
