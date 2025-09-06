@@ -8,3 +8,4 @@ Source:
     BranchName: "iovpf/Portfolios/workload/Products/data-collection-middleware/Versions/v2"
     ConnectionArn: "arn:aws:codeconnections:ap-northeast-1:897729135795:connection/202feb29-119d-4508-aef6-4c01c3e2f79c"
     FullRepositoryId: "TakuyaSuenaga/ServiceCatalogFactoryProductTemplate"
+    OutputArtifactFormat: CODE_ZIP
