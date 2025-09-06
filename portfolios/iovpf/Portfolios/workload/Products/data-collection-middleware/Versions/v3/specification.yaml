@@ -1,0 +1,8 @@
+Name: "v3"
+Description: "Enhanced version of data collection middleware with improved AMI template support and auto-scaling capabilities"
+Active: true
+Source:
+  Provider: "S3"
+  Configuration:
+    BucketName: "service-catalog-factory-template-897729135795"
+    S3ObjectKey: "path/to/template/product.zip"
